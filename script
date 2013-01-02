@@ -1,0 +1,40 @@
+#!/bin/sh
+
+while True
+do
+clear
+ 
+echo "M A I N - M E N U"
+echo "9. Change Password"
+echo "10. See the disk space"
+echo "11. Login to other box using ssh"
+echo "12. Show all Service running"
+echo "13. Show all ports opened"
+echo "14. Show all java apps running"
+echo "15. Facility to kill a  app"
+echo "16. Exit"
+echo -n "Please enter option [9 - 16]"
+ read choice
+ case $choice in
+  9) echo "************ Change Password for $USER *************";
+     passwd;;
+  10) echo "*********** See the disk space **************";
+     df -k;;
+11) echo "*********** Login to other box using ssh **************";
+     ssh user@192.154.43.67;;
+12) echo "*********** Show all Service running **************";
+     ps -aux;;
+13) echo "*********** Show all ports opened **************";
+     ss -l;;
+14) echo "*********** Show all java apps running **************";
+     ps -aux | grep "java";;
+  15) echo "*********** Facility to kill a  app *********";   
+read pid;;        
+kill -9 $pid;;
+  16) echo "Bye $USER";
+     exit 1;;
+  *) echo "$choice is an invaild option. Please select option between 9-16 only";
+     echo "Press [enter] key to continue. . .";
+     read enterKey;;
+esac
+done
